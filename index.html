@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adhii | My Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            background: #111c33;
+        }
+
+        nav h2 { color: #38bdf8; }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 18px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #38bdf8;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 25px #38bdf8;
+        }
+
+        #clock {
+            font-size: 36px;
+            font-weight: bold;
+            color: #38bdf8;
+            margin-bottom: 5px;
+            letter-spacing: 3px;
+        }
+
+        #date {
+            color: #cbd5e1;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span { color: #38bdf8; }
+
+        .hero p {
+            color: #cbd5e1;
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 13px 25px;
+            background: #38bdf8;
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        section {
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #38bdf8;
+        }
+
+        section p {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            width: 240px;
+            border: 1px solid #334155;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-link {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .project-link:hover { cursor: pointer; }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .card h3 { margin-bottom: 12px; }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #111c33;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a { margin: 0 7px; }
+            .hero h1 { font-size: 36px; }
+        }
+
+        #theme-toggle {
+            display: block;
+            margin: 15px auto;
+            padding: 10px 18px;
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #theme-toggle:hover { transform: scale(1.05); }
+
+        body.light-mode {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        body.light-mode nav,
+        body.light-mode footer { background: #e2e8f0; }
+
+        body.light-mode nav a { color: #0f172a; }
+
+        body.light-mode .hero p,
+        body.light-mode section p { color: #334155; }
+
+        body.light-mode .card {
+            background: #ffffff;
+            border-color: #cbd5e1;
+        }
+
+        body.light-mode .card h3 { color: #0f172a; }
+
+        .cursor {
+            color: #38bdf8;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        #topButton {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            border: 2px solid #0f172a;
+            border-radius: 50%;
+            background: #38bdf8;
+            color: #0f172a;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            padding: 0;
+        }
+
+        #topButton:hover { transform: translateY(-5px); }
+
+        .lesson-button {
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 12px 20px;
+            margin: 12px 5px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .lesson-button:hover { transform: translateY(-2px); }
+        #countText { margin-top: 20px; }
+    button.button {
+    margin: 10px;
+    font-size: 15px;
+}
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h2>Adhii.</h2>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <button id="theme-toggle">☀️ Light Mode</button>
+
+    <div class="hero" id="home">
+        <img src="profile.jpg.jpeg" alt="My profile picture" class="profile-pic">
+        <h1><span id="typing-text"></span><span class="cursor">|</span></h1>
+        <div id="clock">00:00:00</div>
+        <p id="date"></p>
+        <p>
+            Student, creative thinker, and aspiring web developer.
+            I'm learning to turn ideas into beautiful websites.
+        </p>
+        <a href="#projects" class="button">Explore My Projects</a>
+    </div>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p id="myText">Welcome to my portfolio!</p>
+        <button class="lesson-button" onclick="sayHello()">Welcome Message</button>
+        <button class="lesson-button" onclick="changeText()">Change Text</button>
+        <button class="lesson-button" onclick="changeBackground()">Change Background</button>
+
+        <p id="colourText" style="margin-top: 20px;">I love coding!</p>
+        <button class="lesson-button" onclick="changeTextColour()">Change Text Colour</button>
+
+        <p id="countText">Button clicked: 0 times</p>
+        <button class="lesson-button" onclick="countClicks()">Click Me!</button>
+        <button class="lesson-button" onclick="resetCount()">Reset</button>
+    </section>
+
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>HTML</h3>
+                <p>Building website structures.</p>
+            </div>
+            <div class="card">
+                <h3>CSS</h3>
+                <p>Designing beautiful webpages.</p>
+            </div>
+            <div class="card">
+                <h3>Learning JavaScript</h3>
+                <p>Exploring interactive websites.</p>
+            </div>
+        </div>
+        <p id="extraText" style="display: none;">
+    I am learning JavaScript to become a web developer!
+</p>
+
+<button class="button" onclick="toggleText()">Show More</button>
+<button class="button" id="toggleButton" onclick="changeButtonText()">
+    Click Me
+</button>
+<p id="todayDate"></p>
+
+<button class="button" onclick="showDate()">
+    Show Today's Date
+</button>
+
+<button class="button" onclick="toggleCalculator()">
+    Calculator 🧮
+</button>
+
+<section id="calculator" style="display: none;">
+    <h2>My First Calculator</h2>
+
+    <input type="number" id="num1" placeholder="First number">
+    <input type="number" id="num2" placeholder="Second number">
+
+    <button class="button" onclick="addNumbers()">
+        Add Numbers
+    </button>
+
+    <p id="result">Answer will appear here</p>
+</section>
+
+<button class="button" onclick="toggleTodo()">
+    📝 To-Do List
+</button>
+
+<section id="todo" style="display: none;">
+    <h2>My To-Do List</h2>
+
+    <input id="taskInput" placeholder="Enter a task...">
+
+    <button class="button" onclick="addTask()">
+        Add Task
+    </button>
+
+    <ul id="taskList"></ul>
+</section>
+
+</section>
+</section>
+
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="cards">
+            <a href="first-website.html" class="project-link">
+                <div class="card">
+                    <h3>My First Website</h3>
+                    <p>My first step into web development.</p>
+                </div>
+            </a>
+            <div class="card">
+                <h3>Portfolio Website</h3>
+                <p>A personal space to showcase my work.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Have an idea or a project? Let's connect!</p>
+        <a class="button"
+           href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=adhnankottiyod@gmail.com"
+           target="_blank" rel="noopener noreferrer">Send Me an Email</a>
+    </section>
+
+    <footer>
+        <p>Made with HTML, CSS, and JavaScript | Adhii's Portfolio</p>
+    </footer>
+
+    <button id="topButton" title="Go to top" aria-label="Go to top">↑</button>
+
+    <script>
+        // LESSON 11 AND 12: Counter and reset
+        let count = 0;
+
+        function countClicks() {
+            count = count + 1;
+            document.getElementById("countText").textContent =
+                "Button clicked: " + count + " times";
+        }
+
+        function resetCount() {
+            count = 0;
+            document.getElementById("countText").textContent =
+                "Button clicked: 0 times";
+        }
+
+        // LESSON 4: Show a message popup
+        function sayHello() {
+            alert("Welcome, Adhii!");
+        }
+
+        // LESSON 5 AND 8: Switch paragraph text back and forth
+        function changeText() {
+            const paragraph = document.getElementById("myText");
+            if (paragraph.textContent === "Welcome to my portfolio!") {
+                paragraph.textContent = "I will become a web developer!";
+            } else {
+                paragraph.textContent = "Welcome to my portfolio!";
+            }
+        }
+
+        // LESSON 9: Switch page background between green and navy
+        function changeBackground() {
+            if (document.body.style.backgroundColor === "green") {
+                document.body.style.backgroundColor = "#0f172a";
+            } else {
+                document.body.style.backgroundColor = "green";
+            }
+        }
+
+        // LESSON 10: Switch paragraph text colour between red and blue
+        function changeTextColour() {
+            const paragraph = document.getElementById("colourText");
+            if (paragraph.style.color === "red") {
+                paragraph.style.color = "blue";
+            } else {
+                paragraph.style.color = "red";
+            }
+        }
+
+        // Live clock and date
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, "0");
+            const minutes = String(now.getMinutes()).padStart(2, "0");
+            const seconds = String(now.getSeconds()).padStart(2, "0");
+
+            document.getElementById("clock").textContent =
+                hours + ":" + minutes + ":" + seconds;
+
+            document.getElementById("date").textContent =
+                now.toLocaleDateString("en-IN", {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                });
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Dark and light theme toggle; remember the chosen theme
+        const themeButton = document.getElementById("theme-toggle");
+
+        if (localStorage.getItem("theme") === "light") {
+            document.body.classList.add("light-mode");
+            themeButton.textContent = "🌙 Dark Mode";
+        }
+
+        themeButton.addEventListener("click", function () {
+            document.body.classList.toggle("light-mode");
+            if (document.body.classList.contains("light-mode")) {
+                localStorage.setItem("theme", "light");
+                themeButton.textContent = "🌙 Dark Mode";
+            } else {
+                localStorage.setItem("theme", "dark");
+                themeButton.textContent = "☀️ Light Mode";
+            }
+        });
+
+        // Typing animation for the heading
+        const typingText = document.getElementById("typing-text");
+        const message = "Hello, I'm Adhii!";
+        let letterIndex = 0;
+
+        function typeHeading() {
+            if (letterIndex < message.length) {
+                typingText.textContent += message.charAt(letterIndex);
+                letterIndex++;
+                setTimeout(typeHeading, 100);
+            }
+        }
+        typeHeading();
+
+        // Show the back-to-top button after scrolling
+        const topButton = document.getElementById("topButton");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                topButton.style.display = "block";
+            } else {
+                topButton.style.display = "none";
+            }
+        });
+
+        topButton.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    function toggleText() {
+    const paragraph = document.getElementById("extraText");
+
+    if (paragraph.style.display === "none") {
+        paragraph.style.display = "block";
+    } else {
+        paragraph.style.display = "none";
+    }
+}
+function changeButtonText() {
+    const button = document.getElementById("toggleButton");
+
+    if (button.textContent === "Click Me") {
+        button.textContent = "You Clicked Me!";
+    } else {
+        button.textContent = "Click Me";
+    }
+}
+    function showDate() {
+    const today = new Date();
+
+    document.getElementById("todayDate").textContent =
+        today.toDateString();
+}
+    function addNumbers() {
+    const a = Number(document.getElementById("num1").value);
+    const b = Number(document.getElementById("num2").value);
+
+    document.getElementById("result").textContent =
+        "Answer: " + (a + b);
+}
+    
+function toggleCalculator() {
+    const calculator = document.getElementById("calculator");
+
+    if (calculator.style.display === "none") {
+        calculator.style.display = "block";
+    } else {
+        calculator.style.display = "none";
+    }
+}
+
+function addNumbers() {
+    const a = Number(document.getElementById("num1").value);
+    const b = Number(document.getElementById("num2").value);
+
+    document.getElementById("result").textContent =
+        "Answer: " + (a + b);
+}
+function addTask() {
+    const input = document.getElementById("taskInput");
+    const task = input.value.trim();
+
+    if (task === "") {
+        alert("Please enter a task!");
+        return;
+    }
+
+    const listItem = document.createElement("li");
+    listItem.textContent = task;
+
+    document.getElementById("taskList").appendChild(listItem);
+
+    input.value = "";
+}
+    
+function toggleTodo() {
+    const todo = document.getElementById("todo");
+
+    if (todo.style.display === "none") {
+        todo.style.display = "block";
+    } else {
+        todo.style.display = "none";
+    }
+}
+
+function addTask() {
+    const input = document.getElementById("taskInput");
+    const task = input.value.trim();
+
+    if (task === "") {
+        alert("Please enter a task!");
+        return;
+    }
+
+    let tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+
+    tasks.push(task);
+
+    localStorage.setItem("myTasks", JSON.stringify(tasks));
+
+    input.value = "";
+    showTasks();
+}
+
+
+function showTasks() {
+    const tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+    const list = document.getElementById("taskList");
+
+    list.innerHTML = "";
+
+    tasks.forEach(function(task, index) {
+        const item = document.createElement("li");
+
+        item.textContent = task + " ";
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.onclick = function() {
+            deleteTask(index);
+        };
+
+        item.appendChild(deleteButton);
+        list.appendChild(item);
+    });
+}
+
+function deleteTask(index) {
+    const tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+
+    tasks.splice(index, 1);
+
+    localStorage.setItem("myTasks", JSON.stringify(tasks));
+
+    showTasks();
+}
+
+showTasks();
+    </script>
+</body>
+</html>
