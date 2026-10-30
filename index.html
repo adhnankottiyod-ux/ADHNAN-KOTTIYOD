@@ -1,639 +1,317 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adhii | My Portfolio</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: white;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 22px 8%;
-            background: #111c33;
-        }
-
-        nav h2 { color: #38bdf8; }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-
-        .hero {
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 18px;
-        }
-
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #38bdf8;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .profile-pic:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 25px #38bdf8;
-        }
-
-        #clock {
-            font-size: 36px;
-            font-weight: bold;
-            color: #38bdf8;
-            margin-bottom: 5px;
-            letter-spacing: 3px;
-        }
-
-        #date {
-            color: #cbd5e1;
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span { color: #38bdf8; }
-
-        .hero p {
-            color: #cbd5e1;
-            font-size: 18px;
-            line-height: 1.7;
-            max-width: 600px;
-        }
-
-        .button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 13px 25px;
-            background: #38bdf8;
-            color: #0f172a;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-        }
-
-        section {
-            padding: 60px 8%;
-            text-align: center;
-        }
-
-        section h2 {
-            font-size: 30px;
-            margin-bottom: 20px;
-            color: #38bdf8;
-        }
-
-        section p {
-            color: #cbd5e1;
-            line-height: 1.8;
-        }
-
-        .cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .card {
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            width: 240px;
-            border: 1px solid #334155;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-link {
-            color: white;
-            text-decoration: none;
-            display: block;
-        }
-
-        .project-link:hover { cursor: pointer; }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
-        }
-
-        .card h3 { margin-bottom: 12px; }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: #111c33;
-            color: #94a3b8;
-        }
-
-        @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            nav a { margin: 0 7px; }
-            .hero h1 { font-size: 36px; }
-        }
-
-        #theme-toggle {
-            display: block;
-            margin: 15px auto;
-            padding: 10px 18px;
-            background: #38bdf8;
-            color: #0f172a;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        #theme-toggle:hover { transform: scale(1.05); }
-
-        body.light-mode {
-            background: #f1f5f9;
-            color: #0f172a;
-        }
-
-        body.light-mode nav,
-        body.light-mode footer { background: #e2e8f0; }
-
-        body.light-mode nav a { color: #0f172a; }
-
-        body.light-mode .hero p,
-        body.light-mode section p { color: #334155; }
-
-        body.light-mode .card {
-            background: #ffffff;
-            border-color: #cbd5e1;
-        }
-
-        body.light-mode .card h3 { color: #0f172a; }
-
-        .cursor {
-            color: #38bdf8;
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        #topButton {
-            display: none;
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 50px;
-            height: 50px;
-            border: 2px solid #0f172a;
-            border-radius: 50%;
-            background: #38bdf8;
-            color: #0f172a;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-            z-index: 1000;
-            transition: transform 0.3s ease;
-            padding: 0;
-        }
-
-        #topButton:hover { transform: translateY(-5px); }
-
-        .lesson-button {
-            background-color: #38bdf8;
-            color: #0f172a;
-            padding: 12px 20px;
-            margin: 12px 5px 0;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .lesson-button:hover { transform: translateY(-2px); }
-        #countText { margin-top: 20px; }
-    button.button {
-    margin: 10px;
-    font-size: 15px;
-}
-    </style>
+    <title>Adhnan Mohammed | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <nav>
-        <h2>Adhii.</h2>
-        <div>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+<div id="progressBar"></div>
+    
+<nav>
+    <h2>ADHNAN.</h2>
+
+    <button class="menu-toggle" id="menuToggle">
+        ☰
+    </button>
+
+    <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#interests">Interests</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="#guestbook">Guestbook</a>
+        <a href="#resume">Resume</a>
+    </div>
+</nav>
 
     <button id="theme-toggle">☀️ Light Mode</button>
 
-    <div class="hero" id="home">
-        <img src="profile.jpg.jpeg" alt="My profile picture" class="profile-pic">
-        <h1><span id="typing-text"></span><span class="cursor">|</span></h1>
-        <div id="clock">00:00:00</div>
-        <p id="date"></p>
-        <p>
-            Student, creative thinker, and aspiring web developer.
-            I'm learning to turn ideas into beautiful websites.
-        </p>
-        <a href="#projects" class="button">Explore My Projects</a>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="intro">WELCOME TO MY PORTFOLIO</p>
+            <h1>I'm <span>Adhnan Mohammed</span></h1>
+            <h2 id="typing"></h2>
+            <p class="description">
+                I enjoy learning technology, building websites,
+                and turning creative ideas into digital experiences.
+            </p>
+            <p class="location">📍 Kottiyodu, Mannarkkad, Kerala</p>
+            <div class="live-clock">
+    <h2 id="clock">00:00:00</h2>
+    <p id="date"></p>
+</div>
+            <a href="#projects" class="btn">Explore My Work</a>
+        </div>
+
+        <div class="hero-image">
+            <img src="profile.jpg.jpeg" alt="Adhnan Mohammed">
+        </div>
+    </section>
+
+<section class="about" id="about">
+    <div class="section-heading">
+        <p class="intro">GET TO KNOW ME</p>
+        <h2>About <span>Me</span></h2>
     </div>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p id="myText">Welcome to my portfolio!</p>
-        <button class="lesson-button" onclick="sayHello()">Welcome Message</button>
-        <button class="lesson-button" onclick="changeText()">Change Text</button>
-        <button class="lesson-button" onclick="changeBackground()">Change Background</button>
+    <div class="about-content">
+        <h3>My Journey in Technology</h3>
 
-        <p id="colourText" style="margin-top: 20px;">I love coding!</p>
-        <button class="lesson-button" onclick="changeTextColour()">Change Text Colour</button>
+        <p>
+            I'm Adhnan Mohammed, from Kottiyodu,
+            Mannarkkad, Kerala. I'm an aspiring web
+            developer with a passion for technology
+            and creativity.
+        </p>
 
-        <p id="countText">Button clicked: 0 times</p>
-        <button class="lesson-button" onclick="countClicks()">Click Me!</button>
-        <button class="lesson-button" onclick="resetCount()">Reset</button>
-    </section>
+        <p>
+            I'm currently developing my skills in
+            HTML, CSS and JavaScript. I enjoy
+            learning new things and transforming
+            ideas into meaningful digital experiences.
+        </p>
 
-    <section id="skills">
-        <h2>My Skills</h2>
-        <div class="cards">
-            <div class="card">
-                <h3>HTML</h3>
-                <p>Building website structures.</p>
-            </div>
-            <div class="card">
-                <h3>CSS</h3>
-                <p>Designing beautiful webpages.</p>
-            </div>
-            <div class="card">
-                <h3>Learning JavaScript</h3>
-                <p>Exploring interactive websites.</p>
-            </div>
+        <p>
+            My goal is to grow as a developer and
+            create websites that are useful,
+            attractive and user-friendly.
+        </p>
+    </div>
+</section>
+
+
+<section class="interests" id="interests">
+
+    <div class="section-heading">
+        <p class="intro">WHAT INSPIRES ME</p>
+        <h2>My <span>Interests</span></h2>
+        <p class="interests-description">
+            The things that inspire my curiosity and creativity.
+        </p>
+    </div>
+
+    <div class="interests-container">
+
+        <div class="interest-card">
+            <div class="interest-icon">💻</div>
+            <h3>Technology</h3>
+            <p>Exploring technology and discovering new digital possibilities.</p>
         </div>
-        <p id="extraText" style="display: none;">
-    I am learning JavaScript to become a web developer!
-</p>
 
-<button class="button" onclick="toggleText()">Show More</button>
-<button class="button" id="toggleButton" onclick="changeButtonText()">
-    Click Me
-</button>
-<p id="todayDate"></p>
-
-<button class="button" onclick="showDate()">
-    Show Today's Date
-</button>
-
-<button class="button" onclick="toggleCalculator()">
-    Calculator 🧮
-</button>
-
-<section id="calculator" style="display: none;">
-    <h2>My First Calculator</h2>
-
-    <input type="number" id="num1" placeholder="First number">
-    <input type="number" id="num2" placeholder="Second number">
-
-    <button class="button" onclick="addNumbers()">
-        Add Numbers
-    </button>
-
-    <p id="result">Answer will appear here</p>
-</section>
-
-<button class="button" onclick="toggleTodo()">
-    📝 To-Do List
-</button>
-
-<section id="todo" style="display: none;">
-    <h2>My To-Do List</h2>
-
-    <input id="taskInput" placeholder="Enter a task...">
-
-    <button class="button" onclick="addTask()">
-        Add Task
-    </button>
-
-    <ul id="taskList"></ul>
-</section>
-
-</section>
-</section>
-
-    <section id="projects">
-        <h2>My Projects</h2>
-        <div class="cards">
-            <a href="first-website.html" class="project-link">
-                <div class="card">
-                    <h3>My First Website</h3>
-                    <p>My first step into web development.</p>
-                </div>
-            </a>
-            <div class="card">
-                <h3>Portfolio Website</h3>
-                <p>A personal space to showcase my work.</p>
-            </div>
+        <div class="interest-card">
+            <div class="interest-icon">🎨</div>
+            <h3>Creative Design</h3>
+            <p>Turning creative ideas into beautiful digital experiences.</p>
         </div>
-    </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Have an idea or a project? Let's connect!</p>
-        <a class="button"
-           href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=adhnankottiyod@gmail.com"
-           target="_blank" rel="noopener noreferrer">Send Me an Email</a>
-    </section>
+        <div class="interest-card">
+            <div class="interest-icon">🚀</div>
+            <h3>Learning & Growth</h3>
+            <p>Discovering new concepts and continuously improving myself.</p>
+        </div>
 
-    <footer>
-        <p>Made with HTML, CSS, and JavaScript | Adhii's Portfolio</p>
-    </footer>
+        <div class="interest-card">
+            <div class="interest-icon">🧩</div>
+            <h3>Problem Solving</h3>
+            <p>Thinking creatively and finding solutions to challenges.</p>
+        </div>
 
-    <button id="topButton" title="Go to top" aria-label="Go to top">↑</button>
+    </div>
 
-    <script>
-        // LESSON 11 AND 12: Counter and reset
-        let count = 0;
-
-        function countClicks() {
-            count = count + 1;
-            document.getElementById("countText").textContent =
-                "Button clicked: " + count + " times";
-        }
-
-        function resetCount() {
-            count = 0;
-            document.getElementById("countText").textContent =
-                "Button clicked: 0 times";
-        }
-
-        // LESSON 4: Show a message popup
-        function sayHello() {
-            alert("Welcome, Adhii!");
-        }
-
-        // LESSON 5 AND 8: Switch paragraph text back and forth
-        function changeText() {
-            const paragraph = document.getElementById("myText");
-            if (paragraph.textContent === "Welcome to my portfolio!") {
-                paragraph.textContent = "I will become a web developer!";
-            } else {
-                paragraph.textContent = "Welcome to my portfolio!";
-            }
-        }
-
-        // LESSON 9: Switch page background between green and navy
-        function changeBackground() {
-            if (document.body.style.backgroundColor === "green") {
-                document.body.style.backgroundColor = "#0f172a";
-            } else {
-                document.body.style.backgroundColor = "green";
-            }
-        }
-
-        // LESSON 10: Switch paragraph text colour between red and blue
-        function changeTextColour() {
-            const paragraph = document.getElementById("colourText");
-            if (paragraph.style.color === "red") {
-                paragraph.style.color = "blue";
-            } else {
-                paragraph.style.color = "red";
-            }
-        }
-
-        // Live clock and date
-        function updateClock() {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, "0");
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            const seconds = String(now.getSeconds()).padStart(2, "0");
-
-            document.getElementById("clock").textContent =
-                hours + ":" + minutes + ":" + seconds;
-
-            document.getElementById("date").textContent =
-                now.toLocaleDateString("en-IN", {
-                    weekday: "long",
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric"
-                });
-        }
-
-        updateClock();
-        setInterval(updateClock, 1000);
-
-        // Dark and light theme toggle; remember the chosen theme
-        const themeButton = document.getElementById("theme-toggle");
-
-        if (localStorage.getItem("theme") === "light") {
-            document.body.classList.add("light-mode");
-            themeButton.textContent = "🌙 Dark Mode";
-        }
-
-        themeButton.addEventListener("click", function () {
-            document.body.classList.toggle("light-mode");
-            if (document.body.classList.contains("light-mode")) {
-                localStorage.setItem("theme", "light");
-                themeButton.textContent = "🌙 Dark Mode";
-            } else {
-                localStorage.setItem("theme", "dark");
-                themeButton.textContent = "☀️ Light Mode";
-            }
-        });
-
-        // Typing animation for the heading
-        const typingText = document.getElementById("typing-text");
-        const message = "Hello, I'm Adhii!";
-        let letterIndex = 0;
-
-        function typeHeading() {
-            if (letterIndex < message.length) {
-                typingText.textContent += message.charAt(letterIndex);
-                letterIndex++;
-                setTimeout(typeHeading, 100);
-            }
-        }
-        typeHeading();
-
-        // Show the back-to-top button after scrolling
-        const topButton = document.getElementById("topButton");
-
-        window.addEventListener("scroll", function () {
-            if (window.scrollY > 300) {
-                topButton.style.display = "block";
-            } else {
-                topButton.style.display = "none";
-            }
-        });
-
-        topButton.addEventListener("click", function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    function toggleText() {
-    const paragraph = document.getElementById("extraText");
-
-    if (paragraph.style.display === "none") {
-        paragraph.style.display = "block";
-    } else {
-        paragraph.style.display = "none";
-    }
-}
-function changeButtonText() {
-    const button = document.getElementById("toggleButton");
-
-    if (button.textContent === "Click Me") {
-        button.textContent = "You Clicked Me!";
-    } else {
-        button.textContent = "Click Me";
-    }
-}
-    function showDate() {
-    const today = new Date();
-
-    document.getElementById("todayDate").textContent =
-        today.toDateString();
-}
-    function addNumbers() {
-    const a = Number(document.getElementById("num1").value);
-    const b = Number(document.getElementById("num2").value);
-
-    document.getElementById("result").textContent =
-        "Answer: " + (a + b);
-}
-    
-function toggleCalculator() {
-    const calculator = document.getElementById("calculator");
-
-    if (calculator.style.display === "none") {
-        calculator.style.display = "block";
-    } else {
-        calculator.style.display = "none";
-    }
-}
-
-function addNumbers() {
-    const a = Number(document.getElementById("num1").value);
-    const b = Number(document.getElementById("num2").value);
-
-    document.getElementById("result").textContent =
-        "Answer: " + (a + b);
-}
-function addTask() {
-    const input = document.getElementById("taskInput");
-    const task = input.value.trim();
-
-    if (task === "") {
-        alert("Please enter a task!");
-        return;
-    }
-
-    const listItem = document.createElement("li");
-    listItem.textContent = task;
-
-    document.getElementById("taskList").appendChild(listItem);
-
-    input.value = "";
-}
-    
-function toggleTodo() {
-    const todo = document.getElementById("todo");
-
-    if (todo.style.display === "none") {
-        todo.style.display = "block";
-    } else {
-        todo.style.display = "none";
-    }
-}
-
-function addTask() {
-    const input = document.getElementById("taskInput");
-    const task = input.value.trim();
-
-    if (task === "") {
-        alert("Please enter a task!");
-        return;
-    }
-
-    let tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
-
-    tasks.push(task);
-
-    localStorage.setItem("myTasks", JSON.stringify(tasks));
-
-    input.value = "";
-    showTasks();
-}
+</section>
 
 
-function showTasks() {
-    const tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
-    const list = document.getElementById("taskList");
+<!-- PROJECTS SECTION -->
 
-    list.innerHTML = "";
+<section class="projects" id="projects">
 
-    tasks.forEach(function(task, index) {
-        const item = document.createElement("li");
+    <div class="section-heading">
+        <p class="intro">MY CREATIVE WORK</p>
+        <h2>Featured <span>Projects</span></h2>
+        <p class="projects-description">
+            A collection of my learning journey and digital creations.
+        </p>
+    </div>
 
-        item.textContent = task + " ";
+    <div class="projects-container">
 
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
+        <div class="project-card">
+            <div class="project-number">01</div>
+            <div class="project-icon">🌐</div>
+            <h3>My First Website</h3>
+            <p>
+                My first step into web development,
+                exploring website structure and design.
+            </p>
+            <span class="project-tag">First Creation</span>
+        </div>
 
-        deleteButton.onclick = function() {
-            deleteTask(index);
-        };
+        <div class="project-card">
+            <div class="project-number">02</div>
+            <div class="project-icon">👨‍💻</div>
+            <h3>Personal Portfolio</h3>
+            <p>
+                A personal digital space showcasing
+                my journey, interests and creativity.
+            </p>
+            <span class="project-tag">Personal Project</span>
+        </div>
 
-        item.appendChild(deleteButton);
-        list.appendChild(item);
-    });
-}
+        <div class="project-card">
+            <div class="project-number">03</div>
+            <div class="project-icon">📝</div>
+            <h3>To-Do List</h3>
+            <p>
+                A simple task manager designed to
+                organise everyday activities.
+            </p>
+            <span class="project-tag">JavaScript Project</span>
+        </div>
 
-function deleteTask(index) {
-    const tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+    </div>
 
-    tasks.splice(index, 1);
+</section>
 
-    localStorage.setItem("myTasks", JSON.stringify(tasks));
+<!-- CONTACT SECTION -->
 
-    showTasks();
-}
+<section class="contact" id="contact">
 
-showTasks();
-    </script>
+    <div class="section-heading">
+        <p class="intro">LET'S CONNECT</p>
+        <h2>Get In <span>Touch</span></h2>
+        <p class="contact-description">
+            Have an idea, opportunity or question?
+            I'd be happy to hear from you.
+        </p>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+
+        <h3>Let's Start a Conversation</h3>
+
+        <p>
+            Feel free to reach out through email.
+            I'm always open to learning and connecting.
+        </p>
+
+<a
+    href="https://mail.google.com/mail/?view=cm&fs=1&to=adhnankottiyod@gmail.com"
+    class="btn"
+    target="_blank"
+    rel="noopener noreferrer">
+    Send Me an Email →
+</a>
+
+        <p class="contact-location">
+            📍 Kottiyodu, Mannarkkad, Kerala, India
+        </p>
+    </div>
+
+</section>
+
+<footer class="footer">
+    <h2>ADHNAN<span>.</span></h2>
+    <p>Learning. Creating. Growing.</p>
+    <p class="copyright">
+        © 2026 Adhnan Mohammed. All rights reserved.
+    </p>
+</footer>
+
+<!-- VISITOR GUESTBOOK -->
+
+<section class="guestbook" id="guestbook">
+
+    <div class="section-heading">
+        <p class="intro">LET'S CONNECT</p>
+        <h2>Have Something to <span>Say?</span></h2>
+        <p class="guestbook-description">
+            I'd love to hear your thoughts!
+        </p>
+    </div>
+
+    <button type="button" class="btn"
+        onclick="toggleGuestbook()">
+    💬 Leave a Message
+</button>
+    <form class="guestbook-form"
+          id="guestbookForm"
+          action="https://formspree.io/f/mppplgkl"
+          method="POST"
+          style="display: none;">
+
+        <label for="visitorName">Your Name</label>
+        <input type="text" id="visitorName"
+               name="name" placeholder="Enter your name"
+               maxlength="60" required>
+
+        <label for="visitorEmail">Your Email (optional)</label>
+        <input type="email" id="visitorEmail"
+               name="email" placeholder="Enter your email">
+
+        <label for="visitorMessage">Your Message</label>
+        <textarea id="visitorMessage"
+                  name="message"
+                  placeholder="Write something..."
+                  maxlength="1000"
+                  rows="5" required></textarea>
+                  <small id="messageCount">0 / 1000 characters</small>
+
+        <button type="submit" class="btn">
+            Send Message →
+        </button>
+
+    </form>
+    <div id="successMessage" style="display: none;">
+    <h3>✅ Message Sent Successfully!</h3>
+    <p>Thank you for visiting my portfolio. I appreciate your message!</p>
+</div>
+
+<div id="errorMessage" style="display: none;">
+    <p>Sorry! Something went wrong. Please try again.</p>
+</div>
+<p id="formStatus"></p>
+</section>
+
+
+<button id="topButton" title="Back to top">
+    ↑
+</button>
+
+<!-- RESUME SECTION -->
+
+<section class="resume" id="resume">
+
+    <div class="section-heading">
+        <p class="intro">MY PROFESSIONAL PROFILE</p>
+        <h2>My <span>Resume</span></h2>
+    </div>
+
+    <div class="resume-card">
+        <div class="resume-icon">📄</div>
+
+        <h3>Interested in Knowing More?</h3>
+
+        <p>
+            Get in touch to learn more about my
+            education, interests and learning journey.
+        </p>
+
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=adhnankottiyod@gmail.com&su=Request%20for%20Resume"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn">
+            Request My Resume →
+        </a>
+    </div>
+
+</section>
+
+    <script src="script.js"></script>
 </body>
 </html>
