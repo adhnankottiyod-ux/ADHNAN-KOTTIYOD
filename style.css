@@ -817,3 +817,134 @@ body.light-mode p {
     border-bottom: 2px solid #38bdf8;
     padding-bottom: 5px;
 }
+/* ANIMATED PARTICLE BACKGROUND */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}/* AI CHATBOT */
+
+#chatbot {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 10000;
+}
+
+#chatbotToggle {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: #38bdf8;
+    color: #080e1c;
+    font-size: 27px;
+    cursor: pointer;
+    box-shadow: 0 0 20px #38bdf8;
+}
+
+#chatWindow {
+    display: none;
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 330px;
+    height: 430px;
+    background: #0c1528;
+    border: 1px solid #38bdf8;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+}
+
+.chat-header {
+    background: #14243d;
+    color: #38bdf8;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    font-size: 16px;
+}
+
+#closeChat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#chatMessages {
+    height: 300px;
+    padding: 15px;
+    overflow-y: auto;
+    color: white;
+}
+
+.bot-message,
+.user-message {
+    padding: 10px 13px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    max-width: 85%;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.bot-message {
+    background: #1c3452;
+    color: #e2e8f0;
+}
+
+.user-message {
+    background: #087eae;
+    color: white;
+    margin-left: auto;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 10px;
+    gap: 8px;
+    border-top: 1px solid #263b59;
+}
+
+#chatInput {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #263b59;
+    border-radius: 8px;
+    background: #080e1c;
+    color: white;
+}
+
+#sendMessage {
+    background: #38bdf8;
+    border: none;
+    border-radius: 8px;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+@media (max-width: 400px) {
+    #chatWindow {
+        width: min(330px, calc(100vw - 30px));
+        right: -10px;
+    }
+}
+/* FIX BACK TO TOP BUTTON */
+#topButton {
+    position: fixed;
+    bottom: 25px;
+    right: 100px;
+    z-index: 9999;
+}
